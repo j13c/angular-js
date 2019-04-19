@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script>
+            var app = angular.module('myApp',[]);
+            app.controller('myCtrl',function($scope){
+                $scope.firstName2 = "Jean";
+                $scope.lastName2  = "Carlos"
+            });
+    </script>
+    <style>
+        div{
+            -webkit-border-radius: 28;
+            -moz-border-radius: 28;
+            border-radius: 5px;
+            border: solid #1f628d 2px;
+            }
+        .green{
+            -webkit-border-radius: 28;
+            -moz-border-radius: 28;
+            border-radius: 5px;
+            border: solid #437733 2px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- No pueden haber dos ng-app -->
+    <div ng-app="myApp">
+
+        <div>
+            <p>Name: <input type="text" ng-model="name"></p>
+            <p ng-bind="name"></p>
+        </div>
+    
+        <!-- ng-app="" -->    
+        <div ng-init="firstName='Jhon'"> 
+            <p>The Name is: <span ng-bind="firstName"></span></p>
+        </div>
+        
+        <div data-ng-init="message='alternativity you can use data-ng-* '">
+            <p><span data-ng-bind="message"></span></p>
+        </div>
+
+        <div>
+            <p>My First Expression: {{ 5 + 5 }}</p>
+        </div>
+
+        <div data-ng-init="title='Bind using Expression {{ }} = data-ng-bind'">
+            <p><span>{{ title }}</span></p>
+            <p><input type="text" data-ng-model="expression"></p>
+            <p><span>{{ expression }}</span></p>
+        </div>
+        <div class="green" data-ng-controller="myCtrl">
+                <p>First Name: <input type="text" data-ng-model="firstName2"></p>
+                <p>Last  Name: <input type="text" data-ng-model="lastName2"></p>
+                <p>Full  Name: <span>{{ firstName2 + " " + lastName2 }}</span></p>
+        </div>
+        <div data-ng-init="myCol='902233'" style="background-color:{{myCol}}" >
+            <input type="color" data-ng-model="myCol">
+        </div>
+        <div data-ng-init="quantity='2';cost='5'">
+            <p>Total In Dollar: <span data-ng-bind="quantity * cost"></span></p>
+        </div>
+        <div data-ng-init="message='Object in Angular Js';person={firstName:firstName2,lastName:lastName2 }">
+            <p></p>
+                <p>person { </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;'firstName' : '{{person.firstName}}'</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;'lastName'  : '{{person.lastName}}' </p>
+                <p>}</p>
+        </div>
+    </div>
+</body>
+</html>
