@@ -7,6 +7,7 @@
     <title>Document</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    
     <script>
             var app = angular.module('myApp',[]);
             app.controller('myCtrl',function($scope){
@@ -14,6 +15,17 @@
                 $scope.lastName2  = "Carlos"
             });
     </script>
+
+    <script>
+        var app = angular.module("myApp",[]);
+
+        app.directive("myNewDirective", function(){
+            return {
+                template : "I was made in directive constructor!"
+            };
+        });
+    </script>
+    
     <style>
         div{
             -webkit-border-radius: 28;
@@ -76,6 +88,17 @@
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;'lastName'  : '{{person.lastName}}' </p>
                 <p>}</p>
         </div>
+        <div data-ng-init="points=['Cero','unoArray','dosArray','TresArray','CuatroArray']">
+            <p><span>points=['Cero','unoArray','dosArray','TresArray','CuatroArray']</span></p>
+            <p>Lenght of Array: 5 </p>
+            <p><input type="text" data-ng-model="number" maxlength="1"></p>
+            <p>Value [ {{number}} ] : <span data-ng-bind="points[number]"></span></p>
+        </div>
+        
+        <div my-new-directive>
+                <p>&nbsp;</p>
+        </div>
     </div>
+
 </body>
 </html>
