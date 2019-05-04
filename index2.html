@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>From-Angular-Js</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/myApp.js"></script>
+    <script src="js/myCtrl.js"></script>
+
+</head>
+<body>
+    <div data-ng-app="myApp2" ng-controller="ctrlForm" >
+        
+        <div data-ng-init="pag=''">
+                <input type="text" data-ng-model="pag">
+                <div ng-if="pag==1"><a href="index.html" ng-bind="'Go to : '+ pag"></a></div>
+                <div ng-if="pag!=1"><a href="index{{pag}}.html" ng-bind="'Go to : '+ pag"></a></div>
+        </div>
+        <div>
+            <form id="myForm" name="myForm" action="#" data-ng-init="myText='fuck@youmail.com'"  class="col-md-4" novalidate>
+                
+                <label for="myAddress"><strong>Email:</strong></label><br>
+                    <input type="email" name="myAddress" ng-model="myText" ng-change="validationEmail()" class="form-control" required>
+                    <span ng-show="isValid" class="ng-invalid">Not a valid e-mail address</span>  
+                    <input type="submit" class="btn" ng-disabled="myForm.myAddress.$invalid" Value="Enviar">
+                
+                <h1>Status</h1>
+                    <label for="valid" class=" d-inline ">
+                        <span ng-if="!isValid" class="alert alert-success font-weight-bold" role="alert">Valid</span>
+                        <span ng-if="isValid" class="alert alert-danger font-weight-bold" role="alert">Invalid</span>
+                    </label>
+                    <label for="dirty" class=" d-inline ">
+                        <span ng-if="!myForm.myAddress.$dirty" class="alert alert-info font-weight-bold" role="alert">Clean</span>
+                        <span ng-if="myForm.myAddress.$dirty" class="alert alert-danger font-weight-bold" role="alert">Dirty</span>
+                    </label>
+                    <label for="touched" class=" d-inline ">
+                            <span ng-if="!myForm.myAddress.$touched" class="alert alert-secondary font-weight-bold" role="alert">Untouched</span>
+                            <span ng-if="myForm.myAddress.$touched" class="alert alert-warning font-weight-bold" role="alert">Touched</span>
+                    </label>
+                <hr>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

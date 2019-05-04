@@ -7,25 +7,9 @@
     <title>Document</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    
-    <script>
-            var app = angular.module('myApp',[]);
-            app.controller('myCtrl',function($scope){
-                $scope.firstName2 = "Jean";
-                $scope.lastName2  = "Carlos"
-            });
-    </script>
 
-    <script>
-        var app = angular.module("myApp",[]);
-
-        app.directive("myNewDirective", function(){
-            return {
-                template : "I was made in directive constructor!"
-            };
-        });
-    </script>
-    
+    <script src="js/myApp.js"></script>
+    <script src="js/myCtrl.js"></script>
     <style>
         div{
             -webkit-border-radius: 28;
@@ -42,23 +26,25 @@
     </style>
 
 </head>
-
 <body>
     <!-- No pueden haber dos ng-app -->
     <div ng-app="myApp">
+        <div data-ng-init="pag='2'">
+            <input type="text" data-ng-model="pag">
 
+            <a href="index{{pag}}.html">Go to : {{ pag }}</a>
+        </div>
         <div>
             <p>Name: <input type="text" ng-model="name"></p>
             <p ng-bind="name"></p>
         </div>
-    
-        <!-- ng-app="" -->    
+      
         <div ng-init="firstName='Jhon'"> 
             <p>The Name is: <span ng-bind="firstName"></span></p>
         </div>
         
-        <div data-ng-init="message='alternativity you can use data-ng-* '">
-            <p><span data-ng-bind="message"></span></p>
+        <div data-ng-init="message1='alternativity you can use data-ng-* '">
+            <p><span data-ng-bind="message1"></span></p>
         </div>
 
         <div>
@@ -75,30 +61,43 @@
                 <p>Last  Name: <input type="text" data-ng-model="lastName2"></p>
                 <p>Full  Name: <span>{{ firstName2 + " " + lastName2 }}</span></p>
         </div>
-        <div data-ng-init="myCol='902233'" style="background-color:{{myCol}}" >
-            <input type="color" data-ng-model="myCol">
+        <div data-ng-init="myCol='ff00f0'" style="background-color:{{myCol}};" >
+            <input type="color" data-ng-model="myCol" style="display:inline-block;">
+            <h3 style="display:inline-block;">{{myCol}}</h3>
         </div>
         <div data-ng-init="quantity='2';cost='5'">
             <p>Total In Dollar: <span data-ng-bind="quantity * cost"></span></p>
         </div>
-        <div data-ng-init="message='Object in Angular Js';person={firstName:firstName2,lastName:lastName2 }">
-            <p></p>
-                <p>person { </p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;'firstName' : '{{person.firstName}}'</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;'lastName'  : '{{person.lastName}}' </p>
-                <p>}</p>
+        <div data-ng-init="message='Object in Angular Js';
+            person=[
+                {firstName:'Jean',lastName:'Trujillo',country:'Venezuela'},
+                {firstName:'Carlos',lastName:'Contreras',country:'Chile'}]">
+            <p>Looping with objects:</p>
+                <p>person [ </p>
+                    <ul>
+                        <li data-ng-repeat="y in person">{{ 'firstName: '+y.firstName+', lastName: '+y.lastName+', country: '+y.country }}</li>
+                    </ul>
+                <p>]</p>
         </div>
-        <div data-ng-init="points=['Cero','unoArray','dosArray','TresArray','CuatroArray']">
+        <div data-ng-init="points=['Cero','unoArray','dosArray','TresArray','CuatroArray']" style="display:inline-block">
             <p><span>points=['Cero','unoArray','dosArray','TresArray','CuatroArray']</span></p>
             <p>Lenght of Array: 5 </p>
             <p><input type="text" data-ng-model="number" maxlength="1"></p>
             <p>Value [ {{number}} ] : <span data-ng-bind="points[number]"></span></p>
         </div>
-        
+        <div style="display:inline-block">
+            <p><span>data-ng-repeat : directive to repeat</span></p>
+            <ul>
+                <li data-ng-repeat="x in points">
+                    {{ x }}
+                </li>
+            </ul>
+        </div>
         <div my-new-directive>
                 <p>&nbsp;</p>
         </div>
     </div>
+    <!-- directive: my-new-directive -->
 
 </body>
 </html>
